@@ -22,7 +22,7 @@ This microservice is to calculate rewarded points for each transaction and respo
 * Attached postman collection Loyalty Points.postman_collection.json
 * Attached swagger url http://{serverHost}:{serverPort}/swagger-ui/index.html
 * Testing data 
-	*username -> 'ahmed', 'khaled', 'fouad'
+	* username -> 'ahmed', 'khaled', 'fouad'
 * For Testing endpoint, check postman collection
 	* Create transaction  POST 'http://{serverHost}:{serverPort}/transaction'
 	* Update transaction PUT 'http://{serverHost}:{serverPort}/transaction', transaction_id from create transaction endpoint response, transaction status (0 -> PAID, 1 -> PENDING_PAYMENT, 2 -> REFUND)
