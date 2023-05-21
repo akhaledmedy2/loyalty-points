@@ -17,7 +17,7 @@ import java.util.*;
 public class RewardPointsService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private RewardPointsRepository repository;
+    private final RewardPointsRepository repository;
 
     public RewardPointsService(RewardPointsRepository repository) {
         this.repository = repository;
@@ -63,7 +63,7 @@ public class RewardPointsService {
             return customerRewardPoints;
         }
 
-        logger.info("No reward points records found");
+        logger.debug("No reward points records found");
         throw new EntityNotFoundException("No reward points records found");
     }
 

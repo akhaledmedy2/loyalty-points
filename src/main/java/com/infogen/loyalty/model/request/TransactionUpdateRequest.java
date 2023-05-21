@@ -1,4 +1,4 @@
-package com.infogen.loyalty.payload.request;
+package com.infogen.loyalty.model.request;
 
 import lombok.Data;
 

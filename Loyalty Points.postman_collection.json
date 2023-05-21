@@ -71,12 +71,12 @@
 			"name": "customer",
 			"item": [
 				{
-					"name": "customers report",
+					"name": "customers rewarded Points",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/customer/report?page=0&size=10",
+							"raw": "http://localhost:8080/customer/rewardedPoints?page=0&size=10",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -84,7 +84,7 @@
 							"port": "8080",
 							"path": [
 								"customer",
-								"report"
+								"rewardedPoints"
 							],
 							"query": [
 								{

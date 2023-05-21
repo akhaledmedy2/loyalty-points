@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.infogen.loyalty.exception.InvalidTransactionStatusException;
 import com.infogen.loyalty.exception.MissingOrBadParameterException;
-import com.infogen.loyalty.payload.request.TransactionRequest;
-import com.infogen.loyalty.payload.request.TransactionUpdateRequest;
+import com.infogen.loyalty.model.request.TransactionRequest;
+import com.infogen.loyalty.model.request.TransactionUpdateRequest;
 import com.infogen.loyalty.service.TransactionService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TransactionRestControllerTest {
+public class TransactionControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

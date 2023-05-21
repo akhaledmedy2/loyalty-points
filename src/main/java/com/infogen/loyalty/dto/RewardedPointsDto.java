@@ -1,4 +1,4 @@
-package com.infogen.loyalty.payload.dto;
+package com.infogen.loyalty.dto;
 
 import lombok.Getter;
 import lombok.Setter;

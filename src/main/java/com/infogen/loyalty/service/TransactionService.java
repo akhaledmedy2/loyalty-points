@@ -7,16 +7,15 @@ import com.infogen.loyalty.exception.EntityPersistenceException;
 import com.infogen.loyalty.exception.InvalidTransactionStatusException;
 import com.infogen.loyalty.exception.MissingOrBadParameterException;
 import com.infogen.loyalty.mapper.TransactionMapper;
-import com.infogen.loyalty.payload.request.TransactionRequest;
-import com.infogen.loyalty.payload.request.TransactionUpdateRequest;
-import com.infogen.loyalty.payload.response.TransactionResponse;
+import com.infogen.loyalty.model.request.TransactionRequest;
+import com.infogen.loyalty.model.request.TransactionUpdateRequest;
+import com.infogen.loyalty.model.response.TransactionResponse;
 import com.infogen.loyalty.repository.TransactionRepository;
-import com.infogen.loyalty.logic.RewardPointsCalculator;
+import com.infogen.loyalty.calculator.RewardPointsCalculator;
 import com.infogen.loyalty.validators.ParamsValidator;
 import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -31,12 +30,9 @@ import java.util.UUID;
 public class TransactionService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final TransactionMapper mapper = Mappers.getMapper(TransactionMapper.class);
-
-    private TransactionRepository repository;
-
-    private CustomerService customerService;
-
-    private RewardPointsService rewardPointsService;
+    private final TransactionRepository repository;
+    private final CustomerService customerService;
+    private final RewardPointsService rewardPointsService;
 
     public TransactionService(TransactionRepository repository, CustomerService customerService, RewardPointsService rewardPointsService) {
         this.repository = repository;

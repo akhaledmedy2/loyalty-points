@@ -28,4 +28,4 @@ This microservice is to calculate rewarded points for each transaction and respo
 * For Testing endpoint, check postman collection
 	* Create transaction  POST 'http://{serverHost}:{serverPort}/transaction'
 	* Update transaction PUT 'http://{serverHost}:{serverPort}/transaction'
-	* Customer report  GET '/customer/report'
+	* Customer report  GET '/customer/rewardedPoints'

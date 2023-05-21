@@ -1,7 +1,6 @@
-package com.infogen.loyalty.payload.dto;
+package com.infogen.loyalty.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

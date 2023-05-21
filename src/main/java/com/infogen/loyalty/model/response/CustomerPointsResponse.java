@@ -1,6 +1,6 @@
-package com.infogen.loyalty.payload.response;
+package com.infogen.loyalty.model.response;
 
-import com.infogen.loyalty.payload.dto.RewardedPointsDto;
+import com.infogen.loyalty.dto.RewardedPointsDto;
 import lombok.Data;
 
 import java.util.List;

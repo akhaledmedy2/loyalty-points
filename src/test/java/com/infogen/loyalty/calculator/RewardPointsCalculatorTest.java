@@ -1,4 +1,4 @@
-package com.infogen.loyalty.logic;
+package com.infogen.loyalty.calculator;
 
 import org.junit.jupiter.api.Test;
 

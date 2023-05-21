@@ -1,7 +1,7 @@
 package com.infogen.loyalty.mapper;
 
 import com.infogen.loyalty.entity.Transaction;
-import com.infogen.loyalty.payload.response.TransactionResponse;
+import com.infogen.loyalty.model.response.TransactionResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

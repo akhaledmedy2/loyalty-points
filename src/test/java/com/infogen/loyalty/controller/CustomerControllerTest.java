@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class CustomerRestControllerTest {
+public class CustomerControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -29,7 +29,7 @@ public class CustomerRestControllerTest {
     @Test
     public void getCustomersRewardedPoints_WhenRewardedPointsRetrieved_WillReturn200StatusCode() throws Exception {
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/customer/report"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/customer/rewardedPoints"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
@@ -39,7 +39,7 @@ public class CustomerRestControllerTest {
         when(customerService.calculateCustomerRewardedPoints(anyInt(),anyInt())).
                 thenThrow(new EntityNotFoundException(""));
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/customer/report"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/customer/rewardedPoints"))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 }
