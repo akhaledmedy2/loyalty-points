@@ -1,17 +1,7 @@
 # Getting Started
 
 ## Overview
-* This microservice is to calculate rewarded points for each transaction
-* Transaction table is responsible for saving transaction details with its specific customer
-* Customer table is for our existing customers in the system
-* Rewarded points table is for saving calculated points for each customer per month
-* In transaction rest controller, there is 2 endpoints
-  * One for create new transaction with pending status
-  * One for update transaction that commits the transaction and calculate its reward points
-* In customer rest controller, the report endpoint is to get rewarded points for each customer in the previous quarter of year
-* Report endpoint is paginated to avoid load all records at once
-* Some attributes have validation like (amount = 0, empty strings, etc)
-* If some data not found in database, exception will be thrown like (400)
+* This microservice is to calculate rewarded points for each transaction and responsible for saving transaction details with its specific customer also is responsbile for our existing customers in the system with saving calculated points for each customer per month
 
 ### project setup
 * Spring boot: 2.7.2
@@ -20,23 +10,20 @@
 * Dummy and sample data added for testing purposes
 
 ### How to build
-* Open cmd
-* Run 'mvn clean package' command to run with testing
+* Run 'mvn clean package'
 
-### How to run tests
-* Open cmd
+### How to execute unit and integration tests
 * Run 'mvn test'
 
 ### How to run
-* Open cmd
-* Run 'mvn spring-boot:run' to run application as spring boot mvn run
+* Run 'mvn spring-boot:run'
 
 ### How to test
-* Attached postman collection import it then test endpoints
-* Or test with [swagger-api](http://localhost:8080/swagger-ui/index.html)
-* For tracing logs, check cmd console or open logs file in /log folder
-* 'ahmed', 'khaled' and 'fouad' are three usernames for customers existing in our database
-* Create transaction test, use one of these customers username to pass to create transaction 
-* Update transaction test, use transaction id from create transaction endpoint to pass it in update transaction endpoint
-* Transaction status field is numeric field for setting transaction status (0 -> PAID, 1 -> PENDING_PAYMENT, 2 -> REFUND)
-* Customer report test, its GET mapping endpoint just run to get rewarded points for each customer in previous 3 months
+* Attached postman collection Loyalty Points.postman_collection.json
+* Or test with http://{serverHost}:8080/swagger-ui/index.html
+* Testing data 
+	*'ahmed', 'khaled' and 'fouad' are three usernames for customers existing in our database
+* Testing endpoint
+	* Create transaction  POST '/transaction', pass username from one of these customers usernames and transaction amount
+	* Update transaction PUT '/transaction', pass transaction_id from create transaction endpoint response, transaction amount and transaction status (0 -> PAID, 1 -> PENDING_PAYMENT, 2 -> REFUND)
+	* Customer report  GET '/customer/report', run to get rewarded points for each customer in previous 3 months
