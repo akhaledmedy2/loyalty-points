@@ -4,6 +4,7 @@ import com.infogen.loyalty.entity.Customer;
 import com.infogen.loyalty.entity.RewardPoints;
 import com.infogen.loyalty.exception.EntityPersistenceException;
 import com.infogen.loyalty.repository.RewardPointsRepository;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +25,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class RewardPointsServiceTest {
+class RewardPointsServiceTest {
     @Mock
     private Logger logger;
     @Mock
@@ -40,8 +41,8 @@ public class RewardPointsServiceTest {
 
     private Customer customer;
 
-    @BeforeEach
-    public void init() {
+    @BeforeAll
+    void init() {
         customer = new Customer();
         customer.setId(1);
         customer.setUsername("testname");
@@ -67,9 +68,8 @@ public class RewardPointsServiceTest {
     }
 
     @Test
-    public void createRewardPoints_WhenRewardPointsFound_WillUpdateRewardPointsEntity() {
-        when(repository.findOneByCustomerAndMonth(any(Customer.class), any(Date.class)))
-                .thenReturn(Optional.ofNullable(rewardPoints));
+    void createRewardPoints_WhenRewardPointsFound_WillUpdateRewardPointsEntity() {
+        when(repository.findOneByCustomerAndMonth(any(Customer.class), any(Date.class))).thenReturn(Optional.ofNullable(rewardPoints));
 
         when(repository.save(any(RewardPoints.class))).thenReturn(rewardPoints);
 
@@ -79,9 +79,8 @@ public class RewardPointsServiceTest {
     }
 
     @Test
-    public void createRewardPoints_WhenRewardPointsNotFound_WillCreateRewardPointsEntity() {
-        when(repository.findOneByCustomerAndMonth(any(Customer.class), any(Date.class)))
-                .thenReturn(Optional.empty());
+    void createRewardPoints_WhenRewardPointsNotFound_WillCreateRewardPointsEntity() {
+        when(repository.findOneByCustomerAndMonth(any(Customer.class), any(Date.class))).thenReturn(Optional.empty());
 
         rewardPoints.setPoints(50);
         when(repository.save(any(RewardPoints.class))).thenReturn(rewardPoints);
@@ -92,20 +91,17 @@ public class RewardPointsServiceTest {
     }
 
     @Test
-    public void getPointsWithLastThreeMonths_WhenRewardPointsListRetrieved_WillReturnCustomerMapResponse() {
-        when(repository.findAllByMonthBetweenAndGroupByCustomer(any(Date.class), any(Date.class),
-                any(Pageable.class))).thenReturn(rewardPointsList);
+    void getPointsWithLastThreeMonths_WhenRewardPointsListRetrieved_WillReturnCustomerMapResponse() {
+        when(repository.findAllByMonthBetweenAndGroupByCustomer(any(Date.class), any(Date.class), any(Pageable.class))).thenReturn(rewardPointsList);
 
-        Map<Customer, List<RewardPoints>> customerMapResponse = rewardPointsService
-                .getPointsWithLastThreeMonths(PageRequest.of(0, 10));
+        Map<Customer, List<RewardPoints>> customerMapResponse = rewardPointsService.getPointsWithLastThreeMonths(PageRequest.of(0, 10));
 
         assertEquals(1, customerMapResponse.size());
     }
 
     @Test
-    public void getPointsWithLastThreeMonths_WhenNoRecordsFound_WillThrowEntityNotFoundException() {
-        when(repository.findAllByMonthBetweenAndGroupByCustomer(any(Date.class), any(Date.class),
-                any(Pageable.class))).thenReturn(new ArrayList<>());
+    void getPointsWithLastThreeMonths_WhenNoRecordsFound_WillThrowEntityNotFoundException() {
+        when(repository.findAllByMonthBetweenAndGroupByCustomer(any(Date.class), any(Date.class), any(Pageable.class))).thenReturn(new ArrayList<>());
 
         assertThrows(EntityNotFoundException.class, () -> {
             rewardPointsService.getPointsWithLastThreeMonths(PageRequest.of(0, 10));
@@ -113,7 +109,7 @@ public class RewardPointsServiceTest {
     }
 
     @Test
-    public void createRewardPoints_WhenRewardPointsNotSaved_WillThrowEntityPersistenceException() {
+    void createRewardPoints_WhenRewardPointsNotSaved_WillThrowEntityPersistenceException() {
         when(repository.save(any(RewardPoints.class))).thenThrow(new EntityPersistenceException("message"));
 
         assertThrows(EntityPersistenceException.class, () -> {

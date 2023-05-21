@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class TransactionControllerTest {
+class TransactionControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -33,7 +33,7 @@ public class TransactionControllerTest {
     private TransactionService transactionService;
 
     @Test
-    public void createTransaction_WhenTransactionCreated_WillReturn200StatusCode() throws Exception {
+    void createTransaction_WhenTransactionCreated_WillReturn200StatusCode() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.post("/transaction")
                         .content(asJsonString(initiateTransactionRequest()))
@@ -43,7 +43,7 @@ public class TransactionControllerTest {
     }
 
     @Test
-    public void createTransaction_WhenRequestBodyIsInvalid_WillReturn400StatusCode() throws Exception {
+    void createTransaction_WhenRequestBodyIsInvalid_WillReturn400StatusCode() throws Exception {
 
         when(transactionService.createTransaction(any(TransactionRequest.class)))
                 .thenThrow(new MissingOrBadParameterException(""));
@@ -56,7 +56,7 @@ public class TransactionControllerTest {
     }
 
     @Test
-    public void updateTransaction_WhenTransactionFound_WillReturn200StatusCode() throws Exception {
+    void updateTransaction_WhenTransactionFound_WillReturn200StatusCode() throws Exception {
 
         mockMvc.perform(MockMvcRequestBuilders.put("/transaction")
                         .content(asJsonString(initiateTransactionUpdateRequest()))
@@ -66,7 +66,7 @@ public class TransactionControllerTest {
     }
 
     @Test
-    public void updateTransaction_WhenInvalidTransactionStatus_WillReturn400StatusCode() throws Exception {
+    void updateTransaction_WhenInvalidTransactionStatus_WillReturn400StatusCode() throws Exception {
         when(transactionService.updateTransaction(any(TransactionUpdateRequest.class)))
                 .thenThrow(new InvalidTransactionStatusException(""));
 
@@ -78,7 +78,7 @@ public class TransactionControllerTest {
     }
 
     @Test
-    public void updateTransaction_WhenTransactionNotFound_WillReturn404StatusCode() throws Exception {
+    void updateTransaction_WhenTransactionNotFound_WillReturn404StatusCode() throws Exception {
         when(transactionService.updateTransaction(any(TransactionUpdateRequest.class)))
                 .thenThrow(new EntityNotFoundException(""));
 
@@ -88,6 +88,7 @@ public class TransactionControllerTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
+
     private TransactionUpdateRequest initiateTransactionUpdateRequest() {
         TransactionUpdateRequest transactionUpdateRequest = new TransactionUpdateRequest();
         transactionUpdateRequest.setTransaction_status(0);

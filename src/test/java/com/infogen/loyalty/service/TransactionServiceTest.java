@@ -10,6 +10,7 @@ import com.infogen.loyalty.model.request.TransactionRequest;
 import com.infogen.loyalty.model.request.TransactionUpdateRequest;
 import com.infogen.loyalty.model.response.TransactionResponse;
 import com.infogen.loyalty.repository.TransactionRepository;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,7 +30,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class TransactionServiceTest {
+class TransactionServiceTest {
     @Mock
     private Logger logger;
     @Mock
@@ -49,8 +50,8 @@ public class TransactionServiceTest {
 
     private TransactionUpdateRequest transactionUpdateRequest;
 
-    @BeforeEach
-    public void init() {
+    @BeforeAll
+    void init() {
         customer = new Customer();
         customer.setId(1);
         customer.setUsername("testname");
@@ -79,7 +80,7 @@ public class TransactionServiceTest {
     }
 
     @Test
-    public void createTransaction_WhenTransactionCreated_WillReturnTransactionResponse() {
+    void createTransaction_WhenTransactionCreated_WillReturnTransactionResponse() {
         when(customerService.getCustomerByUsername(anyString())).thenReturn(customer);
         when(transactionRepository.save(any(Transaction.class))).thenReturn(transaction);
 
@@ -89,7 +90,7 @@ public class TransactionServiceTest {
     }
 
     @Test
-    public void createTransaction_WhenTransactionNotSaved_WillThrowEntityPersistenceException() {
+    void createTransaction_WhenTransactionNotSaved_WillThrowEntityPersistenceException() {
         when(customerService.getCustomerByUsername(anyString())).thenReturn(customer);
 
         when(transactionRepository.save(any(Transaction.class))).thenThrow(new EntityPersistenceException("message"));
@@ -100,7 +101,7 @@ public class TransactionServiceTest {
     }
 
     @Test
-    public void createTransaction_WhenTransactionRequestNotValid_WillThrowMissingOrBadParameterException() {
+    void createTransaction_WhenTransactionRequestNotValid_WillThrowMissingOrBadParameterException() {
         transactionRequest = new TransactionRequest();
 
         assertThrows(MissingOrBadParameterException.class, () -> {
@@ -109,7 +110,7 @@ public class TransactionServiceTest {
     }
 
     @Test
-    public void updateTransaction_WhenTransactionUpdated_WillReturnTransactionResponse() {
+    void updateTransaction_WhenTransactionUpdated_WillReturnTransactionResponse() {
         when(transactionRepository.findOneByTransactionId(anyString())).thenReturn(Optional.of(transaction));
         when(transactionRepository.save(transaction)).thenReturn(transaction);
 
@@ -119,7 +120,7 @@ public class TransactionServiceTest {
     }
 
     @Test
-    public void updateTransaction_WhenTransactionStatusIsInvalid_WillThrowInvalidTransactionStatusException() {
+    void updateTransaction_WhenTransactionStatusIsInvalid_WillThrowInvalidTransactionStatusException() {
         transactionUpdateRequest.setTransaction_status(5);
 
         assertThrows(InvalidTransactionStatusException.class, () -> {
@@ -128,7 +129,7 @@ public class TransactionServiceTest {
     }
 
     @Test
-    public void getTransactionByTransactionId_WhenTransactionFound_WillReturnTransactionEntity() {
+    void getTransactionByTransactionId_WhenTransactionFound_WillReturnTransactionEntity() {
         when(transactionRepository.findOneByTransactionId(anyString())).thenReturn(Optional.of(transaction));
 
         Transaction transaction = transactionService.getTransactionByTransactionId("12312453");
@@ -137,7 +138,7 @@ public class TransactionServiceTest {
     }
 
     @Test
-    public void getTransactionByTransactionId_WhenTransactionNotFound_WillThrowEntityNotFoundException() {
+    void getTransactionByTransactionId_WhenTransactionNotFound_WillThrowEntityNotFoundException() {
         when(transactionRepository.findOneByTransactionId(anyString())).thenReturn(Optional.empty());
 
         assertThrows(EntityNotFoundException.class, () -> {

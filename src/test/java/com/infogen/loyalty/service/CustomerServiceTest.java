@@ -7,6 +7,7 @@ import com.infogen.loyalty.enums.TransactionStatus;
 import com.infogen.loyalty.dto.CustomerDto;
 import com.infogen.loyalty.model.response.CustomerPointsResponse;
 import com.infogen.loyalty.repository.CustomerRepository;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,7 +26,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class CustomerServiceTest {
+class CustomerServiceTest {
 
     @Mock
     private CustomerRepository customerRepository;
@@ -42,8 +43,8 @@ public class CustomerServiceTest {
     private RewardPoints rewardPoints;
     List<RewardPoints> rewardPointsList;
 
-    @BeforeEach
-    public void init() {
+    @BeforeAll
+    void init() {
         customer = new Customer();
         customer.setId(1);
         customer.setUsername("testname");
@@ -90,7 +91,7 @@ public class CustomerServiceTest {
     }
 
     @Test
-    public void getCustomerByUsername_WhenCustomerFound_WillReturnCustomerEntity() {
+    void getCustomerByUsername_WhenCustomerFound_WillReturnCustomerEntity() {
         customerOptional = Optional.ofNullable(customer);
         when(customerRepository.findOneByUsername(anyString())).thenReturn(customerOptional);
         Customer customer = customerService.getCustomerByUsername("username");
@@ -98,7 +99,7 @@ public class CustomerServiceTest {
     }
 
     @Test
-    public void getCustomerByUsername_WhenCustomerNotFound_WillThrowEntityNotFoundException() {
+    void getCustomerByUsername_WhenCustomerNotFound_WillThrowEntityNotFoundException() {
         when(customerRepository.findOneByUsername(anyString())).thenReturn(Optional.empty());
 
         assertThrows(EntityNotFoundException.class, () -> {
@@ -107,7 +108,7 @@ public class CustomerServiceTest {
     }
 
     @Test
-    public void calculateCustomerRewardedPoints_WhenRewardPointsRetrieved_WillReturnRequiredData() {
+    void calculateCustomerRewardedPoints_WhenRewardPointsRetrieved_WillReturnRequiredData() {
         Map<Customer, List<RewardPoints>> rewardPointsMap = new HashMap<>();
         rewardPointsMap.put(customer, rewardPointsList);
         when(rewardPointsService.getPointsWithLastThreeMonths(any(Pageable.class))).thenReturn(rewardPointsMap);
