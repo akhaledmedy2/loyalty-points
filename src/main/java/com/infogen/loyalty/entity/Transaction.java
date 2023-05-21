@@ -36,7 +36,7 @@ public class Transaction {
     @Column(name = "loyalty_points")
     private int loyaltyPoints;
 
-    @Column(name = "transaction_id",unique = true)
+    @Column(name = "transaction_id", unique = true)
     private String transactionId;
 
     @ManyToOne

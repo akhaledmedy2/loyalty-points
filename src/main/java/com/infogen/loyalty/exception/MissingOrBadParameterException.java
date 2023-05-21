@@ -8,6 +8,7 @@ public class MissingOrBadParameterException extends RuntimeException {
 
     @Getter
     private Map<String, String> paramsValidation;
+
     public MissingOrBadParameterException(String message) {
         super(message);
     }

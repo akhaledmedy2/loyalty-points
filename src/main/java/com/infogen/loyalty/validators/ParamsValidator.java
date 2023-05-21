@@ -29,8 +29,8 @@ public class ParamsValidator {
             fieldName = fieldNames.next();
             fieldValue = jsonNode.get(fieldName);
             if (Objects.equals(fieldValue.toString(), "null") || fieldValue.toString().isEmpty()
-            || (fieldValue.toString().matches("-?\\d+(\\.\\d+)?") && fieldValue.toString().equals("0.0")
-            || fieldValue.toString().equals("0"))) {
+                    || (fieldValue.toString().matches("-?\\d+(\\.\\d+)?") && fieldValue.toString().equals("0.0")
+                    || fieldValue.toString().equals("0"))) {
                 validationErrors.put(fieldName, "parameter is missing or invalid");
             }
         }

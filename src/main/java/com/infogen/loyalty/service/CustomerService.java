@@ -1,10 +1,10 @@
 package com.infogen.loyalty.service;
 
+import com.infogen.loyalty.dto.CustomerDto;
+import com.infogen.loyalty.dto.RewardedPointsDto;
 import com.infogen.loyalty.entity.Customer;
 import com.infogen.loyalty.entity.RewardPoints;
 import com.infogen.loyalty.mapper.CustomerMapper;
-import com.infogen.loyalty.dto.CustomerDto;
-import com.infogen.loyalty.dto.RewardedPointsDto;
 import com.infogen.loyalty.model.response.CustomerPointsResponse;
 import com.infogen.loyalty.repository.CustomerRepository;
 import org.mapstruct.factory.Mappers;

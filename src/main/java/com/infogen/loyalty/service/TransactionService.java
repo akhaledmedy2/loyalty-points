@@ -1,5 +1,6 @@
 package com.infogen.loyalty.service;
 
+import com.infogen.loyalty.calculator.RewardPointsCalculator;
 import com.infogen.loyalty.entity.Customer;
 import com.infogen.loyalty.entity.Transaction;
 import com.infogen.loyalty.enums.TransactionStatus;
@@ -11,7 +12,6 @@ import com.infogen.loyalty.model.request.TransactionRequest;
 import com.infogen.loyalty.model.request.TransactionUpdateRequest;
 import com.infogen.loyalty.model.response.TransactionResponse;
 import com.infogen.loyalty.repository.TransactionRepository;
-import com.infogen.loyalty.calculator.RewardPointsCalculator;
 import com.infogen.loyalty.validators.ParamsValidator;
 import org.mapstruct.factory.Mappers;
 import org.slf4j.Logger;
@@ -115,7 +115,7 @@ public class TransactionService {
             logger.info("Transaction [{}] saved for customer [{}] with status [{}]", transaction.getTransactionId(),
                     transaction.getCustomer().getUsername(), transaction.getStatus());
         } catch (Exception e) {
-            logger.info("cannot save transaction entity with data for customer [{}]",transaction.getCustomer().getUsername());
+            logger.info("cannot save transaction entity with data for customer [{}]", transaction.getCustomer().getUsername());
             throw new EntityPersistenceException("cannot save transaction entity");
         }
     }

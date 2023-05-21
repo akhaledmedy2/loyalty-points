@@ -32,6 +32,14 @@ class TransactionControllerTest {
     @MockBean
     private TransactionService transactionService;
 
+    private static String asJsonString(final Object requestBody) {
+        try {
+            return new ObjectMapper().writeValueAsString(requestBody);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Test
     void createTransaction_WhenTransactionCreated_WillReturn200StatusCode() throws Exception {
 
@@ -102,13 +110,5 @@ class TransactionControllerTest {
         transactionRequest.setCustomer_username("test");
         transactionRequest.setAmount(100);
         return transactionRequest;
-    }
-
-    private static String asJsonString(final Object requestBody) {
-        try {
-            return new ObjectMapper().writeValueAsString(requestBody);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
     }
 }

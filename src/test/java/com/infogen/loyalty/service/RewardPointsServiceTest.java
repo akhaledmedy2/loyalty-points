@@ -12,7 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
@@ -41,7 +40,7 @@ class RewardPointsServiceTest {
 
     private Customer customer;
 
-    @BeforeAll
+    @BeforeEach
     void init() {
         customer = new Customer();
         customer.setId(1);

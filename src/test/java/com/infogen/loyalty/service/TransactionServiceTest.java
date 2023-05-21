@@ -50,7 +50,7 @@ class TransactionServiceTest {
 
     private TransactionUpdateRequest transactionUpdateRequest;
 
-    @BeforeAll
+    @BeforeEach
     void init() {
         customer = new Customer();
         customer.setId(1);

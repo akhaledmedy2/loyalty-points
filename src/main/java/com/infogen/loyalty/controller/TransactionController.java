@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/transaction")
-@Tag(name="transaction", description = "transaction endpoints")
+@Tag(name = "transaction", description = "transaction endpoints")
 public class TransactionController {
 
     private TransactionService transactionService;
@@ -21,12 +21,12 @@ public class TransactionController {
     }
 
     @PostMapping
-    public ResponseEntity<TransactionResponse> createTransaction(@RequestBody TransactionRequest createRequest){
+    public ResponseEntity<TransactionResponse> createTransaction(@RequestBody TransactionRequest createRequest) {
         return new ResponseEntity<>(transactionService.createTransaction(createRequest), HttpStatus.OK);
     }
 
     @PutMapping
-    public ResponseEntity<TransactionResponse> updateTransaction(@RequestBody TransactionUpdateRequest updateRequest){
+    public ResponseEntity<TransactionResponse> updateTransaction(@RequestBody TransactionUpdateRequest updateRequest) {
         return new ResponseEntity<>(transactionService.updateTransaction(updateRequest), HttpStatus.OK);
     }
 }

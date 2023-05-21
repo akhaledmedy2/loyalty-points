@@ -16,7 +16,7 @@ public interface RewardPointsRepository extends JpaRepository<RewardPoints, Long
     Optional<RewardPoints> findOneByCustomerAndMonth(Customer customer, Date month);
 
     @Query(value = "select * from reward_points where month_date between :monthStart and :monthEnd",
-            countQuery = "select count(*) from reward_points where month between :monthStart and :monthEnd",nativeQuery = true)
+            countQuery = "select count(*) from reward_points where month between :monthStart and :monthEnd", nativeQuery = true)
     List<RewardPoints> findAllByMonthBetweenAndGroupByCustomer(@Param("monthStart") Date monthDateStart,
                                                                @Param("monthEnd") Date monthDateEnd, Pageable pageable);
 }

@@ -1,10 +1,10 @@
 package com.infogen.loyalty.service;
 
+import com.infogen.loyalty.dto.CustomerDto;
 import com.infogen.loyalty.entity.Customer;
 import com.infogen.loyalty.entity.RewardPoints;
 import com.infogen.loyalty.entity.Transaction;
 import com.infogen.loyalty.enums.TransactionStatus;
-import com.infogen.loyalty.dto.CustomerDto;
 import com.infogen.loyalty.model.response.CustomerPointsResponse;
 import com.infogen.loyalty.repository.CustomerRepository;
 import org.junit.jupiter.api.BeforeAll;
@@ -28,6 +28,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class CustomerServiceTest {
 
+    List<RewardPoints> rewardPointsList;
     @Mock
     private CustomerRepository customerRepository;
     @Mock
@@ -41,9 +42,8 @@ class CustomerServiceTest {
     private Transaction transaction;
     private List<Transaction> transactionList;
     private RewardPoints rewardPoints;
-    List<RewardPoints> rewardPointsList;
 
-    @BeforeAll
+    @BeforeEach
     void init() {
         customer = new Customer();
         customer.setId(1);
