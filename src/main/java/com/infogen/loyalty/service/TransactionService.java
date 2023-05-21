@@ -32,14 +32,17 @@ public class TransactionService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     private final TransactionMapper mapper = Mappers.getMapper(TransactionMapper.class);
 
-    @Autowired
     private TransactionRepository repository;
 
-    @Autowired
     private CustomerService customerService;
 
-    @Autowired
     private RewardPointsService rewardPointsService;
+
+    public TransactionService(TransactionRepository repository, CustomerService customerService, RewardPointsService rewardPointsService) {
+        this.repository = repository;
+        this.customerService = customerService;
+        this.rewardPointsService = rewardPointsService;
+    }
 
     @Transactional
     public TransactionResponse createTransaction(TransactionRequest transactionRequest) {

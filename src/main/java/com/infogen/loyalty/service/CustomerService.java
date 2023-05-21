@@ -22,13 +22,16 @@ public class CustomerService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
     private CustomerRepository repository;
 
-    @Autowired
     private RewardPointsService rewardPointsService;
 
     private final CustomerMapper mapper = Mappers.getMapper(CustomerMapper.class);
+
+    public CustomerService(CustomerRepository repository, RewardPointsService rewardPointsService) {
+        this.repository = repository;
+        this.rewardPointsService = rewardPointsService;
+    }
 
     public Customer getCustomerByUsername(String username) {
         Optional<Customer> customerOptional = repository.findOneByUsername(username);

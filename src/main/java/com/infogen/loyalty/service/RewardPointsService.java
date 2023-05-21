@@ -16,8 +16,12 @@ import java.util.*;
 @Service
 public class RewardPointsService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    @Autowired
+
     private RewardPointsRepository repository;
+
+    public RewardPointsService(RewardPointsRepository repository) {
+        this.repository = repository;
+    }
 
     public void createRewardPoints(Customer customer, Date month, int points) {
         Optional<RewardPoints> rewardPointsOptional = repository.findOneByCustomerAndMonth(customer, month);

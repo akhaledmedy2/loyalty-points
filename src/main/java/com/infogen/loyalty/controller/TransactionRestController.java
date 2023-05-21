@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name="transaction", description = "transaction endpoints")
 public class TransactionRestController {
 
-    @Autowired
     private TransactionService transactionService;
+
+    public TransactionRestController(TransactionService transactionService) {
+        this.transactionService = transactionService;
+    }
 
     @PostMapping
     public ResponseEntity<TransactionResponse> createTransaction(@RequestBody TransactionRequest transactionRequest){

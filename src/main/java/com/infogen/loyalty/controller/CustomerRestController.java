@@ -19,8 +19,11 @@ import java.util.Map;
 @Tag(name = "customer", description = "customer endpoints")
 public class CustomerRestController {
 
-    @Autowired
     private CustomerService customerService;
+
+    public CustomerRestController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @GetMapping(path = "/report")
     public ResponseEntity<Map<CustomerDto, CustomerPointsResponse>> getCustomersRewardedPoints(@RequestParam(value = "page", defaultValue = "0") int page,
