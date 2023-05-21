@@ -23,7 +23,9 @@ This microservice is to calculate rewarded points for each transaction and respo
 * Attached swagger url http://{serverHost}:{serverPort}/swagger-ui/index.html
 * Testing data 
 	* username -> 'ahmed', 'khaled', 'fouad'
+	* transaction status (0 -> PAID, 1 -> PENDING_PAYMENT, 2 -> REFUND)
+	* transaction_id -> from create transaction endpoint response
 * For Testing endpoint, check postman collection
 	* Create transaction  POST 'http://{serverHost}:{serverPort}/transaction'
-	* Update transaction PUT 'http://{serverHost}:{serverPort}/transaction', transaction_id from create transaction endpoint response, transaction status (0 -> PAID, 1 -> PENDING_PAYMENT, 2 -> REFUND)
+	* Update transaction PUT 'http://{serverHost}:{serverPort}/transaction'
 	* Customer report  GET '/customer/report'
