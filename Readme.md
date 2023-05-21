@@ -16,14 +16,14 @@ This microservice is to calculate rewarded points for each transaction and respo
 * Run 'mvn test'
 
 ### How to run
-* Run 'mvn spring-boot:run'
+* Run 'mvn spring-boot:run -Dspring-boot.run.arguments=--server.port=8080'
 
 ### How to test
 * Attached postman collection Loyalty Points.postman_collection.json
-* Attached swagger url http://{serverHost}:8080/swagger-ui/index.html
+* Attached swagger url http://{serverHost}:{serverPort}/swagger-ui/index.html
 * Testing data 
 	*username -> 'ahmed', 'khaled', 'fouad'
 * For Testing endpoint, check postman collection
-	* Create transaction  POST 'http://{serverHost}:8080/transaction'
-	* Update transaction PUT 'http://{serverHost}:8080/transaction', transaction_id from create transaction endpoint response, transaction status (0 -> PAID, 1 -> PENDING_PAYMENT, 2 -> REFUND)
+	* Create transaction  POST 'http://{serverHost}:{serverPort}/transaction'
+	* Update transaction PUT 'http://{serverHost}:{serverPort}/transaction', transaction_id from create transaction endpoint response, transaction status (0 -> PAID, 1 -> PENDING_PAYMENT, 2 -> REFUND)
 	* Customer report  GET '/customer/report'
